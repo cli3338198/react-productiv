@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 /** Form for adding.
  *
  * Props:
@@ -10,63 +9,82 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm() {
+function TodoForm({}) {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    priority: "",
+  });
 
   /** Update form input. */
-  function handleChange(evt) { }
+  function handleChange(evt) {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [evt.target.name]: evt.target.value,
+    }));
+  }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) { }
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    // TODO: edit or create callback
+
+    // reset the form
+    setFormData({
+      title: "",
+      description: "",
+      priority: "",
+    });
+  }
 
   return (
-      <form className="NewTodoForm" onSubmit={handleSubmit}>
+    <form className="NewTodoForm" onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <input
+          id="newTodo-title"
+          name="title"
+          className="form-control"
+          placeholder="Title"
+          onChange={handleChange}
+          value={formData.title}
+          aria-label="Title"
+        />
+      </div>
 
-        <div className="mb-3">
-          <input
-              id="newTodo-title"
-              name="title"
-              className="form-control"
-              placeholder="Title"
-              onChange={handleChange}
-              value="FIXME"
-              aria-label="Title"
-          />
+      <div className="mb-3">
+        <textarea
+          id="newTodo-description"
+          name="description"
+          className="form-control"
+          placeholder="Description"
+          onChange={handleChange}
+          value={formData.description}
+          aria-label="Description"
+        />
+      </div>
+
+      <div className="mb-3 d-flex justify-content-between">
+        <div className="w-75 d-flex justify-content-between">
+          <label htmlFor="newTodo-priority" className="d-inline-flex">
+            Priority:&nbsp;&nbsp;
+          </label>
+          <select
+            id="newTodo-priority"
+            name="priority"
+            value={formData.priority}
+            onChange={handleChange}
+            className="form-control form-control-sm d-inline-flex"
+          >
+            <option value={1}>Ultra-Über</option>
+            <option value={2}>Über</option>
+            <option value={3}>Meh</option>
+          </select>
         </div>
-
-        <div className="mb-3">
-          <textarea
-              id="newTodo-description"
-              name="description"
-              className="form-control"
-              placeholder="Description"
-              onChange={handleChange}
-              value="FIXME"
-              aria-label="Description"
-          />
-        </div>
-
-        <div className="mb-3 d-flex justify-content-between">
-          <div className="w-75 d-flex justify-content-between">
-            <label htmlFor="newTodo-priority"
-                   className="d-inline-flex">Priority:&nbsp;&nbsp;
-            </label>
-            <select id="newTodo-priority"
-                    name="priority"
-                    value="FIXME"
-                    onChange={handleChange}
-                    className="form-control form-control-sm d-inline-flex"
-            >
-              <option value={1}>Ultra-Über</option>
-              <option value={2}>Über</option>
-              <option value={3}>Meh</option>
-            </select>
-          </div>
-          <button className="btn-primary rig btn btn-sm NewTodoForm-addBtn">
-            Gø!
-          </button>
-        </div>
-
-      </form>
+        <button className="btn-primary rig btn btn-sm NewTodoForm-addBtn">
+          Gø!
+        </button>
+      </div>
+    </form>
   );
 }
 

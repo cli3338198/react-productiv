@@ -1,5 +1,6 @@
 import React from "react";
 import EditableTodo from "./EditableTodo";
+import Todo from "./Todo";
 
 /** Show list of editable todos.
  *
@@ -11,14 +12,19 @@ import EditableTodo from "./EditableTodo";
  * TodoApp -> EditableTodoList -> [ EditableTodo, ... ]
  */
 
-function EditableTodoList() {
+function EditableTodoList({ todos, update, remove }) {
   return (
-      <div>
-        {/*   FIXME  */}
-        <EditableTodo />
-        <EditableTodo />
-        <EditableTodo />
-      </div>
+    <div>
+      {todos.map((todo) => (
+        <Todo
+          key={todo.id}
+          id={todo.id}
+          title={todo.title}
+          description={todo.description}
+          priority={todo.priority}
+        />
+      ))}
+    </div>
   );
 }
 
