@@ -9,12 +9,8 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({}) {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    priority: "",
-  });
+function TodoForm({handleSave, initialFormData}) {
+  const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -27,8 +23,8 @@ function TodoForm({}) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    // TODO: edit or create callback
-
+    //console.log(formData)
+    handleSave(formData)
     // reset the form
     setFormData({
       title: "",

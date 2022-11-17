@@ -15,7 +15,7 @@ function Todo({ id, title, description, priority }) {
         <b>{title}</b> <small>(priority: {priority})</small>
       </div>
       <div>
-        <small>{description}.</small>
+        <small>{description}</small>
       </div>
     </div>
   );

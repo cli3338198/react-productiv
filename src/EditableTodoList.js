@@ -13,15 +13,15 @@ import Todo from "./Todo";
  */
 
 function EditableTodoList({ todos, update, remove }) {
+  console.log("Editable todos called>>>>>>",todos);
   return (
     <div>
       {todos.map((todo) => (
-        <Todo
+        <EditableTodo
           key={todo.id}
-          id={todo.id}
-          title={todo.title}
-          description={todo.description}
-          priority={todo.priority}
+          todo={todo}
+          update={update}
+          remove={remove}
         />
       ))}
     </div>

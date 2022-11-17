@@ -21,41 +21,46 @@ function EditableTodo({ todo, update, remove }) {
   }
 
   /** Call remove fn passed to this. */
-  function handleDelete() {}
+  function handleDelete() { }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave(formData) {}
-
+  function handleSave() { }
+  console.log("What is todo?",todo)
   return (
     <div className="EditableTodo">
-      {isEditing ? (
-        <TodoForm />
-      ) : (
-        <Todo
-          id={todo.id}
-          title={todo.title}
-          description={todo.description}
-          priority={todo.priority}
-        />
-      )}
 
-      <div className="mb-3">
-        <div className="float-end text-sm-end">
-          <button
-            className="EditableTodo-toggle btn-link btn btn-sm"
-            onClick={toggleEdit}
-          >
-            Edit
-          </button>
-          <button
-            className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-            onClick={handleDelete}
-          >
-            Del
-          </button>
+      {isEditing ? (
+        <TodoForm handleSave={update} initialFormData={todo}/>
+      ) : (
+        <div>
+
+          <Todo
+            id={todo.id}
+            title={todo.title}
+            description={todo.description}
+            priority={todo.priority}
+          />
+
+          <div className="mb-3">
+            
+            <div className="float-end text-sm-end">
+              <button
+                className="EditableTodo-toggle btn-link btn btn-sm"
+                onClick={toggleEdit}
+              >
+                Edit
+              </button>
+              <button
+                className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+                onClick={handleDelete}
+              >
+                Del
+              </button>
+            </div>
+            <Todo />
+          </div>
         </div>
-        <Todo />
-      </div>
+      )}
     </div>
   );
 }
