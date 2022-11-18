@@ -1,21 +1,15 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "./App";
+import Todo from "./Todo.js"
+import todos from "./_testData_.js"
 
-describe("productiv app", function () {
+describe("renders a single todo", function () {
   it("renders without crashing", function () {
-    render(<App />);
+    render(<Todo {...todos[0]} />);
   });
 
-  it("contains expected title", function () {
-    const result = render(<App />);
-    expect(result.queryByText("Prøductïv")).toBeInTheDocument();
-  });
-
-  it("rendered quotes app", function () {
-    const result = render(<App />);
-    expect(
-      result.queryByText("Click here for an inspirational quøte!")
-    ).toBeInTheDocument();
+  it("matches snapshot", function(){
+    const {container} = render(<Todo {...todos[0]} />);
+    expect(container).toMatchSnapshot();
   });
 });

@@ -25,4 +25,6 @@ const todos = [
   },
 ];
 
-export { todos };
+
+
+export default todos;

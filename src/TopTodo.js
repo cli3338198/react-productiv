@@ -2,6 +2,7 @@ import React from "react";
 
 import Todo from "./Todo";
 
+
 /** Shows the top todo.
  *
  * Props:
@@ -10,8 +11,10 @@ import Todo from "./Todo";
  * TodoApp -> TopTodo
  */
 
-function TopTodo({ todos }) {
+function TopTodo({ todos = []}) {
   // lowest-priority # is the highest priority
+  if(todos.length===0) return null;
+
   const top = todos.reduce(
     (acc, cur) => (cur.priority < acc.priority ? cur : acc),
     todos[0]
