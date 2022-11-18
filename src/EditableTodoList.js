@@ -13,7 +13,6 @@ import Todo from "./Todo";
  */
 
 function EditableTodoList({ todos, update, remove }) {
-  console.log("Editable todos called>>>>>>",todos);
   return (
     <div>
       {todos.map((todo) => (

@@ -3,6 +3,8 @@ import Todo from "./Todo";
 import TodoForm from "./TodoForm";
 
 /** Show editable todo item.
+ * 
+ TODO: state ?
  *
  * Props
  * - todo
@@ -21,28 +23,24 @@ function EditableTodo({ todo, update, remove }) {
   }
 
   /** Call remove fn passed to this. */
-  function handleDelete() { }
+  function handleDelete() {
+    remove(todo.id);
+  }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
-  function handleSave() { }
-  console.log("What is todo?",todo)
+  function handleSave(updatedTodo) {
+    update(updatedTodo);
+    toggleEdit();
+  }
+
+  //TODO: formatting
   return (
     <div className="EditableTodo">
-
       {isEditing ? (
-        <TodoForm handleSave={update} initialFormData={todo}/>
+        <TodoForm handleSave={handleSave} initialFormData={todo} />
       ) : (
         <div>
-
-          <Todo
-            id={todo.id}
-            title={todo.title}
-            description={todo.description}
-            priority={todo.priority}
-          />
-
           <div className="mb-3">
-            
             <div className="float-end text-sm-end">
               <button
                 className="EditableTodo-toggle btn-link btn btn-sm"
@@ -57,7 +55,12 @@ function EditableTodo({ todo, update, remove }) {
                 Del
               </button>
             </div>
-            <Todo />
+            <Todo
+              id={todo.id}
+              title={todo.title}
+              description={todo.description}
+              priority={todo.priority}
+            />
           </div>
         </div>
       )}
@@ -66,3 +69,5 @@ function EditableTodo({ todo, update, remove }) {
 }
 
 export default EditableTodo;
+
+// TODO: change string to number for default

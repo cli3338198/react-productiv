@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 /** Form for adding.
  *
+ * TODO: state?
+ *
  * Props:
  * - initialFormData
  * - handleSave: function to call in parent.
@@ -9,14 +11,19 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({handleSave, initialFormData}) {
+function TodoForm({
+  handleSave,
+  initialFormData = { title: "", description: "", priority: 1 },
+}) {
   const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */
   function handleChange(evt) {
+    //
+    const { name, value } = evt.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [evt.target.name]: evt.target.value,
+      [name]: value,
     }));
   }
 
@@ -24,13 +31,9 @@ function TodoForm({handleSave, initialFormData}) {
   function handleSubmit(evt) {
     evt.preventDefault();
     //console.log(formData)
-    handleSave(formData)
+    handleSave(formData);
     // reset the form
-    setFormData({
-      title: "",
-      description: "",
-      priority: "",
-    });
+    setFormData(initialFormData);
   }
 
   return (
