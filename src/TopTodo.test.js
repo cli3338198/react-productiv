@@ -8,16 +8,14 @@ describe("works", function () {
     render(<TopTodo todos={todos} />);
   });
 
-  it("doesn't fails with not data",function(){
-
-    const {container} = render(<TopTodo />);
-    
+  it("renders null if no todos", function () {
+    const { container } = render(<TopTodo />);
     expect(container).not.toHaveTextContent("(priority:");
   });
 
   it("returns highest priority todo", function () {
-    const {container} = render(<TopTodo todos={todos} />);
+    const { container } = render(<TopTodo todos={todos} />);
     expect(container).toHaveTextContent("t4");
-    expect(container).not.toHaveTextContent("t1")
+    expect(container).not.toHaveTextContent("t1");
   });
 });

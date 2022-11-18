@@ -9,6 +9,8 @@ import React from "react";
  **/
 
 function Todo({ id, title, description, priority }) {
+  if (!id || !title || !description || !priority) return null;
+
   return (
     <div className="Todo" id={id}>
       <div>
