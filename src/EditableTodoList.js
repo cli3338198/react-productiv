@@ -1,6 +1,5 @@
 import React from "react";
 import EditableTodo from "./EditableTodo";
-import Todo from "./Todo";
 
 /** Show list of editable todos.
  *

@@ -9,7 +9,7 @@ import TodoForm from "./TodoForm";
  *
  * Props:
  * - initialTodos: possible array of [ todo, ... ]
- * TODO: change to like ...
+ *      todo: {id: number, title: string, description: string, priority: number(1-3)}
  *
  * State:
  * - todos: array of [ todo, ... ]
@@ -22,9 +22,7 @@ function TodoApp({ initialTodos = [] }) {
 
   /** add a new todo to list */
   function create(newTodo) {
-    newTodo.id = uuid();
-    // TODO: don't mutate
-    setTodos((todos) => [...todos, newTodo]);
+    setTodos((todos) => [...todos, { ...newTodo, id: uuid() }]);
   }
 
   /** update a todo with updatedTodo */

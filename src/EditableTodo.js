@@ -3,8 +3,8 @@ import Todo from "./Todo";
 import TodoForm from "./TodoForm";
 
 /** Show editable todo item.
- * 
- TODO: state ?
+ *
+ * State: isEditing: true/false, default of false
  *
  * Props
  * - todo
@@ -33,7 +33,6 @@ function EditableTodo({ todo, update, remove }) {
     toggleEdit();
   }
 
-  //TODO: formatting
   return (
     <div className="EditableTodo">
       {isEditing ? (
@@ -69,5 +68,3 @@ function EditableTodo({ todo, update, remove }) {
 }
 
 export default EditableTodo;
-
-// TODO: change string to number for default

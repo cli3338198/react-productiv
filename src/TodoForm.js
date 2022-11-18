@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 /** Form for adding.
  *
- * TODO: state?
+ * State: formData: {title: string, description: string, priority: number(1-3)}
  *
  * Props:
  * - initialFormData
